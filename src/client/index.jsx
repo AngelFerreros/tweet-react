@@ -2,49 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import tweets from 'tweets'
 
-/*
-<Tweet>
-  <User/>
-  <Entities>
-    <UrlEntity/>
-  </Entities>
-</Tweet>
-*/
-
 class Tweet extends React.Component{
   render() {
-      let txtTweets = this.props.tweetsArr.map (tweet =>
+    let txtTweets = this.props.tweetsArr.map (tweet =>
       <div>
-        <p> {tweet.text} </p>
         <p> {tweet.user.screen_name} </p>
+        <p> {tweet.text} </p>
       </div>)
     return(
-        <div className = "tweetBox">
-          <li>{txtTweets}</li>
-        </div>
-      );
+      <div className = "tweetBox">
+        {txtTweets}
+      </div>
+    );
   }
 }
 
-// class User extends React.Component{
-//   render (){
-//     let screenName = this.props.name.map (tweet => tweet.user.screen_name)
-//     return (
-//       <div className ="namebox">
-//         <li>{screenName}</li>
-//       </div>
-//       );
-//   }
-// }
+class Entity extends React.Component{
+  render() {
+    // let urls = this.props.array.map(tweet => tweet.entities.urls[0])
+    let urlEntity = this.props.array.map(tweet => tweet.entities.urls[0].url)
+    // let toRender = (urls.length < 0) ? urlEntity  : urlEntity
+    return(
+      <div>
+      </div>
+    );
+  }
+}
 
 class App extends React.Component {
   render() {
     return (
       <div className ="container">
-
-
+        <div className = "row tweets">
           <Tweet tweetsArr= {tweets.tweets}/>
-
+        </div>
       </div>
     );
   }
